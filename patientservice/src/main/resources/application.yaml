@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: patient-service
+
+  # Nạp config từ Config Server
+  config:
+    import: "configserver:http://localhost:8888"
+
+  # Cho phép override config từ Config Server
+  cloud:
+    config:
+      fail-fast: true       # Nếu không kết nối được Config Server → dừng app ngay
+      retry:
+        initial-interval: 1000
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.5
+
+server:
+  port: 8081
